@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record DadosAtualizaProprietario(
 
         @NotNull
-
         Long id,
         
         String nome,
