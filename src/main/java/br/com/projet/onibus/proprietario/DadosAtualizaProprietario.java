@@ -1,19 +1,19 @@
-package proprietario;
+package br.com.projet.onibus.proprietario;
 
-import jakarta.validation.constraints.NotBlank;
+import br.com.projet.onibus.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizaProprietario(
 
         @NotNull
-
         Long id,
-        
+
+
         String nome,
 
         String cpf,
 
         String telefone
+        ) {
 
-) {
 }
