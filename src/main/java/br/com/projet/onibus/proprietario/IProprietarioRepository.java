@@ -1,2 +1,9 @@
-package br.com.projet.onibus.proprietario;public interface IProprietarioRepository {
+package br.com.projet.onibus.proprietario;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IProprietarioRepository extends JpaRepository<Proprietario, Long> {
+
+
+
 }
