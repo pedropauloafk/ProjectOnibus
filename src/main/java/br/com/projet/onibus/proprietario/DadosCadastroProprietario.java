@@ -1,4 +1,6 @@
 package br.com.projet.onibus.proprietario;
 
-public record DadosCadastroProprietario(String nome, String email, String cpf, String telefone, String endereco) {
+import br.com.projet.onibus.endereco.DadosEndereco;
+
+public record DadosCadastroProprietario(String nome, String cpf, String email, String telefone, DadosEndereco endereco) {
 }

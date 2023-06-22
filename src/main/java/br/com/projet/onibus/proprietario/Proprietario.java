@@ -1,62 +1,37 @@
 package br.com.projet.onibus.proprietario;
 
 
+import br.com.projet.onibus.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import proprietario.DadosAtualizaProprietario;
 
-@Entity (name = "proprietarios")
-@Table (name = "proprietarios")
+@Entity(name="proprietarios")
+@Table(name="proprietarios")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode( of = "id")
+@EqualsAndHashCode(of = "id")
 public class Proprietario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
-    private String endereco;
+
+    @Embedded
+    private Endereco endereco;
 
     public Proprietario(DadosCadastroProprietario dados) {
-
-        this.nome = dados.nome();
+        this.nome  = dados.nome();
         this.cpf = dados.cpf();
         this.email = dados.email();
         this.telefone = dados.telefone();
-        this.endereco = dados.endereco();
-    }
-
-
-    public void atualizarInformacoes(DadosAtualizaProprietario dados) {
-
-        if ( dados.nome()  != null) {
-
-            this.nome = dados.nome();
-
-        }
-
-        if (dados.cpf() != null) {
-
-            this.cpf = dados.cpf();
-
-        }
-
-        if ( dados.telefone() != null ){
-
-            this.telefone = dados.telefone();
-
-        }
-
-
+        this.endereco = new Endereco(dados.endereco());
     }
 }
