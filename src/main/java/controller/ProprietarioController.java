@@ -12,10 +12,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import br.com.projet.onibus.proprietario.DadosListagemProprietario;
 import proprietario.DadosAtualizaProprietario;
-
 @RestController
-@RequestMapping("proprietarios")
+@RequestMapping("/proprietarios")
+
 public class ProprietarioController {
+
+
 
     @Autowired
     private IProprietarioRepository repository;
@@ -23,9 +25,11 @@ public class ProprietarioController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastroProprietario dados){
+
+    public void cadastrar(@RequestBody @Valid DadosCadastroProprietario dados){
         repository.save(new Proprietario(dados));
     }
+
 
 
     @GetMapping
