@@ -27,6 +27,7 @@ public class Proprietario {
     @Embedded
     private Endereco endereco;
 
+    //Adicionar atributo "Boolean Ativo - para fazer exclusão logica depois com as migrations"
     public Proprietario(DadosCadastroProprietario dados) {
         this.nome  = dados.nome();
         this.cpf = dados.cpf();
