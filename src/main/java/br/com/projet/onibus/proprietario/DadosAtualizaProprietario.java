@@ -15,5 +15,4 @@ public record DadosAtualizaProprietario(
 
         String telefone
         ) {
-
 }
