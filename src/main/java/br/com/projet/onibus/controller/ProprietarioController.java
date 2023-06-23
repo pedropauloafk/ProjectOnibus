@@ -4,9 +4,6 @@ package br.com.projet.onibus.controller;
 import br.com.projet.onibus.proprietario.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +27,6 @@ public class ProprietarioController {
      public List<DadosListagemProprietario> listar (){
         return repository.findAll().stream().map(DadosListagemProprietario::new).toList();
     }
-
-
-
 
     @PutMapping
     @Transactional
