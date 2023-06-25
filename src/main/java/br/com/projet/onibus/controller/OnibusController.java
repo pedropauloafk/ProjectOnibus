@@ -1,12 +1,11 @@
 package br.com.projet.onibus.controller;
 
-import br.com.projet.onibus.onibus.DadosCadastroOnibus;
-import br.com.projet.onibus.onibus.DadosListagemOnibus;
-import br.com.projet.onibus.onibus.IOnibusRepository;
-import br.com.projet.onibus.onibus.Onibus;
+import br.com.projet.onibus.onibus.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -21,8 +20,11 @@ public class OnibusController {
 
     @PostMapping
     @Transactional
-    public void insertOnibus(@RequestBody DadosCadastroOnibus dados){
-        iOnibusRepository.save(new Onibus(dados));
+    public ResponseEntity insertOnibus(@RequestBody DadosCadastroOnibus dados, UriComponentsBuilder uriBuilder){
+        var onibus =  new Onibus(dados);
+        iOnibusRepository.save(onibus);
+        var uri = uriBuilder.path("/onibus/{id}").buildAndExpand(onibus.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoOnibus(onibus));
 
     }
 
