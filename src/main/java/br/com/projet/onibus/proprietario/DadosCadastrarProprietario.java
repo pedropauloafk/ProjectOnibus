@@ -2,7 +2,7 @@ package br.com.projet.onibus.proprietario;
 import br.com.projet.onibus.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotBlank;
 
-public record CadastrarProprietario(
+public record DadosCadastrarProprietario(
         @NotBlank
         String nome,
 

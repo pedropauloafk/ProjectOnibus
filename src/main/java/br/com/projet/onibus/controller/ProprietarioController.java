@@ -18,7 +18,7 @@ public class ProprietarioController {
 
     @PostMapping
     @Transactional
-    public void cadastrarEmpresa(@RequestBody CadastrarProprietario dados){
+    public void cadastrarEmpresa(@RequestBody DadosCadastrarProprietario dados){
         repository.save(new Proprietario(dados));
 
     }
