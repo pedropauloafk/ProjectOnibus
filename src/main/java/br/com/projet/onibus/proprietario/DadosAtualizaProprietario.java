@@ -8,7 +8,6 @@ public record DadosAtualizaProprietario(
         @NotNull
         Long id,
 
-
         String nome,
 
         String cpf,

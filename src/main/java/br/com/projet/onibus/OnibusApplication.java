@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OnibusApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OnibusApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OnibusApplication.class, args);
+    }
 
 }

@@ -32,7 +32,7 @@ public class Proprietario {
     private boolean ativo = true;
 
     //Adicionar atributo "Boolean Ativo - para fazer exclusão logica depois com as migrations"
-    public Proprietario(CadastrarProprietario dados) {
+    public Proprietario(DadosCadastrarProprietario dados) {
         this.nome  = dados.nome();
         this.cpf = dados.cpf();
         this.email = dados.email();
