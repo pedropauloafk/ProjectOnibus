@@ -8,19 +8,11 @@ import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroEmpresa(
 
+                @NotBlank String nome_fantasia,
 
-        @NotBlank
-        String nome_fantasia,
+                @NotBlank String email,
 
-        @NotBlank
-        String email,
+                @NotBlank String cnpj,
 
-        @NotBlank
-        String cnpj,
-
-        @NotBlank
-        String telefone,
-
-        @NotNull @Valid
-        DadosEndereco endereco) {
+                @NotBlank String telefone) {
 }

@@ -3,41 +3,42 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{template.html}">    
 <head>
-    <title> Lista de Proprietários</title>
+    <title> Lista de Empresas </title>
 </head>
 <body>
 
 <div layout:fragment="conteudo">
+
     <ul class="menu">
         <li><a href="/viewempresas">Empresas</a></li>
         <li><a href="/viewproprietarios">Proprietários</a></li>
         <li><a href="">Rotas</a></li>
         <li><a href="#">Ônibus</a></li>
     </ul>
-    <br> <br>
 
-    <h1> Lista de Proprietários</h1>
-    <a href="/viewproprietarios/formulario_cadastro">ADICIONAR NOVO PROPRIETÁRIO</a> 
+    <h1> Lista de Empresas Cadastradas</h1>
+    <a href="/viewempresas/formulario_cadastro">ADICIONAR NOVA EMPRESA</a> 
+
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th> NOME</th>
-            <th> CPF</th>
-            <th>OPÇÕES</th>    
+            <th> CNPJ</th>
+            <th>EMAIL</th>
+            <th> NOME FANTASIA</th>
+            <th>  OPÇÕES  </th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="proprietarios :${lista} ">
-            <td th:text="${proprietarios.id}"></td>
-            <td th:text="${proprietarios.nome}"></td>
-            <td th:text="${proprietarios.cpf}"></td>
+        <tr th:each="empresas :${lista} ">
+            <td th:text="${empresas.cnpj}"></td>
+            <td th:text="${empresas.email}"></td>
+            <td th:text="${empresas.nome_fantasia}"></td>
             <td>
-                <a th:href="@{/viewproprietarios/formulario_cadastro?id={id}(id=${proprietarios.id})}"> Editar </a>
-                <form action="/viewproprietarios" method="post">
+             <a th:href="@{/viewempresas/formulario_cadastro?id={id}(id=${empresas.id})}"> Editar </a>
+                <form action="/viewempresas" method="post">
                     <input type="hidden" name="_method" value="delete">
-                    <input type="hidden" name="id" th:value="${proprietarios.id}">
+                    <input type="hidden" name="id" th:value="${empresas.id}">
                     <input type="submit" value="Excluir">
                 </form>
 

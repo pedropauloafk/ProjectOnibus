@@ -23,20 +23,15 @@ public class Empresa {
     private String email;
     private String cnpj;
     private String telefone;
-
-    @Embedded
-    private Endereco endereco;
-
     //Depois fazer com a migration
-    private boolean ativo;
+   
 
     public Empresa(DadosCadastroEmpresa dados){
         this.nome_fantasia = dados.nome_fantasia();;
         this.email = dados.email();
         this.cnpj = dados.cnpj();
         this.telefone = dados.telefone();
-        this.endereco = new Endereco(dados.endereco());
-        this.ativo = true;
+      
     }
 
     public void atualizarInformacoes(DadosAtualizacaoEmpresa dados) {
@@ -46,8 +41,4 @@ public class Empresa {
         this.cnpj = dados.cnpj() != null ? dados.cnpj() : getCnpj();
     }
 
-
-    public void delete() {
-        this.ativo = false;
-    }
 }

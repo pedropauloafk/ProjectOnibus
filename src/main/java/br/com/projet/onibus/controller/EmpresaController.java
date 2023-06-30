@@ -23,7 +23,8 @@ public class EmpresaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity insertEmpresa(@RequestBody @Valid DadosCadastroEmpresa dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity insertEmpresa(@RequestBody @Valid DadosCadastroEmpresa dados,
+            UriComponentsBuilder uriBuilder) {
         var empresa = new Empresa(dados);
         iEmpresaRepository.save(empresa);
         var uri = uriBuilder.path("/empresas/{id}").buildAndExpand(empresa.getId()).toUri();
@@ -31,23 +32,22 @@ public class EmpresaController {
     }
 
     @GetMapping()
-    public List<DadosListagemEmpresa> getAllEmpresa(){
+    public List<DadosListagemEmpresa> getAllEmpresa() {
         return iEmpresaRepository.findAll().stream().map(DadosListagemEmpresa::new).toList();
     }
 
     @PutMapping()
     @Transactional
-    public ResponseEntity updateEmpresa(@RequestBody @Valid DadosAtualizacaoEmpresa dados){
+    public ResponseEntity updateEmpresa(@RequestBody @Valid DadosAtualizacaoEmpresa dados) {
         var empresa = iEmpresaRepository.getReferenceById(dados.id());
         empresa.atualizarInformacoes(dados);
-        return ResponseEntity.ok(new DadosDetalhamentoEmpresa(empresa)) ;
+        return ResponseEntity.ok(new DadosDetalhamentoEmpresa(empresa));
     }
 
     @DeleteMapping("/{idEmpresa}")
     @Transactional
-    public ResponseEntity deleteEmpresa(@PathVariable Long idEmpresa){
+    public ResponseEntity deleteEmpresa(@PathVariable Long idEmpresa) {
         var empresa = iEmpresaRepository.getReferenceById(idEmpresa);
-        empresa.delete();
         return ResponseEntity.noContent().build();
     }
 }
