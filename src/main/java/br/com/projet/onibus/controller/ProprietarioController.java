@@ -25,7 +25,6 @@ public class ProprietarioController {
         var proprietario = new Proprietario(dados);
         repository.save(proprietario);
         var uri = uriBuilder.path("/proprietarios/{id}").buildAndExpand(proprietario.getId()).toUri();
-        repository.save(new Proprietario(dados));
         return ResponseEntity.created(uri).body(new DadosDetalhamentoProprietario(proprietario));
 
 
@@ -53,5 +52,3 @@ public class ProprietarioController {
 
     }
 }
-
-

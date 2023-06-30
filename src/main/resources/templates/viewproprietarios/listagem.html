@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">    
+<head>
+    <title> Lista de Proprietários</title>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+
+    <h1> Lista de Proprietários</h1>
+    <a href="/viewproprietarios/formulario_cadastro">ADICIONAR NOVO PROPRIETÁRIO</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th> NOME</th>
+            <th> CPF</th>
+            <th>OPÇÕES</th>    
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="proprietarios :${lista} ">
+            <td th:text="${proprietarios.id}"></td>
+            <td th:text="${proprietarios.nome}"></td>
+            <td th:text="${proprietarios.cpf}"></td>
+            <td>
+                <a th:href="@{/viewproprietarios/formulario_cadastro?id={id}(id=${proprietarios.id})}"> Editar </a>
+                <form action="/viewproprietarios" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" th:value="${proprietarios.id}">
+                    <input type="submit" value="Excluir">
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

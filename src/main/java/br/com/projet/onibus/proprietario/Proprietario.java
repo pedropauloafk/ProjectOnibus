@@ -1,6 +1,5 @@
 package br.com.projet.onibus.proprietario;
 
-
 import br.com.projet.onibus.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,16 +7,16 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name="proprietarios")
-@Table(name="proprietarios")
+@Entity(name = "proprietarios")
+@Table(name = "proprietarios")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Proprietario {
 
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -25,40 +24,37 @@ public class Proprietario {
     private String email;
     private String telefone;
 
-    @Embedded
-    private Endereco endereco;
-
-
     private boolean ativo = true;
 
-    //Adicionar atributo "Boolean Ativo - para fazer exclusão logica depois com as migrations"
+    // Adicionar atributo "Boolean Ativo - para fazer exclusão logica depois com as
+    // migrations"
     public Proprietario(DadosCadastrarProprietario dados) {
-        this.nome  = dados.nome();
+        this.nome = dados.nome();
         this.cpf = dados.cpf();
         this.email = dados.email();
         this.telefone = dados.telefone();
-        this.endereco = new Endereco(dados.endereco());
     }
 
     public void atualizarInformacoes(DadosAtualizaProprietario dados) {
 
-        if (dados.nome() != null ) {
+        if (dados.nome() != null) {
 
             this.nome = dados.nome();
 
-        }   if (dados.cpf() != null) {
+        }
+        if (dados.cpf() != null) {
 
             this.cpf = dados.cpf();
 
-        }  if (dados.telefone() != null){
+        }
+        if (dados.telefone() != null) {
             this.telefone = dados.telefone();
 
         }
 
-
-
     }
-    public void excluir(){
+
+    public void excluir() {
         this.ativo = false;
 
     }
